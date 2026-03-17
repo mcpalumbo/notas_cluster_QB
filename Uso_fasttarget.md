@@ -35,6 +35,7 @@ Necesitas:
 - Tener acceso al cluster QB.
 - Tener `miniconda` o `conda` instalado en tu `home`.
 - Crear un directorio propio en tu `home` para guardar resultados y logs.
+- **Importante:** Singularity está instalado en la mayoría del cluster, pero **NO está disponible en los nodos 2 y 5**. Estos no los uses.
 
 Por ejemplo:
 
@@ -176,6 +177,12 @@ echo "
 echo
 date +"fin %F - %T"
 sacct --format=JobID,Submit,Start,End,State,Partition,ReqTRES%30,CPUTime,MaxRSS,NodeList --units=M -j ${SLURM_JOB_ID}
+```
+
+**Nota sobre Singularity:** FastTarget también usa contenedores Singularity en esta opción. Singularity está disponible en todos los nodos excepto en los **nodos 2 y 5**. Si necesitas usar esos nodos, especifica otros nodos en tu script `sbatch` con:
+
+```bash
+#SBATCH --exclude=nodo2,nodo5
 ```
 
 Antes de usarlo, reemplaza:
