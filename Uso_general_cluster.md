@@ -5,6 +5,24 @@ Esta guía resume el flujo básico para empezar a usar el cluster QB sin romper 
 Documentación oficial del cluster:
 - [Página principal del Cluster QB](https://docs.cluster.qb.fcen.uba.ar/index.php/P%C3%A1gina_principal)
 
+## Tabla de Contenidos
+
+1. [Antes de empezar](#antes-de-empezar)
+2. [1. Armado de clave SSH](#1-armado-de-clave-ssh)
+3. [2. Envío de Clave Pública a Organizadores](#2-envío-de-clave-pública-a-organizadores)
+4. [3. Configuración del archivo `.ssh/config`](#3-configuración-del-archivo-sshconfig)
+5. [4. Acceso al Cluster](#4-acceso-al-cluster)
+6. [5. Tu Home en el Cluster](#5-tu-home-en-el-cluster)
+7. [6. Instalación de software y paquetes](#6-instalación-de-software-y-paquetes)
+8. [7. ¿Qué hago si debo descargar un programa o datos?](#7-qué-hago-si-debo-descargar-un-programa-o-datos)
+9. [8. Nodo cranex - NO USAR para Trabajar](#8-nodo-cranex---no-usar-para-trabajar)
+10. [9. Usar `screen` para sesiones persistentes](#9-usar-screen-para-sesiones-persistentes)
+11. [10. Crear una sesión de `screen` y pedir un nodo](#10-crear-una-sesión-de-screen-y-pedir-un-nodo)
+12. [11. Envío de Trabajos y Comandos Útiles](#11-envío-de-trabajos-y-comandos-útiles)
+13. [12. Recursos](#12-recursos)
+14. [Resumen de Flujo Típico](#resumen-de-flujo-típico)
+15. [Problemas frecuentes](#problemas-frecuentes)
+
 ## Antes de empezar
 
 Necesitas:
