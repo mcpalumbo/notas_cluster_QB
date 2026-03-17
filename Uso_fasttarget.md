@@ -12,6 +12,23 @@ El código y las bases de datos están instalados en:
 
 En esta guía se usará esa ruta como `FASTTARGET_HOME`.
 
+## Sincronizar el repositorio
+
+Si el repositorio compartido ha sido actualizado, necesitas traer los cambios a tu copia local. Conectate al cluster y ejecuta:
+
+```bash
+ssh qb
+cd /grupos/Dario/fasttarget
+git pull
+```
+
+Es una buena práctica hacer esto regularmente para asegurarte de tener la versión más reciente del código y las bases de datos. Si hay cambios importantes, es posible que debas:
+- Recrear tu ambiente `conda` o reinstalar algunos paquetes
+- Actualizar las bases de datos si han sido modificadas
+
+Para más información sobre actualizaciones y cambios en el repositorio, consulta:
+- [Repositorio de FastTarget en GitHub](https://github.com/mcpalumbo/fasttarget)
+
 ## Antes de empezar
 
 Necesitas:
