@@ -394,6 +394,6 @@ ls ~/fasttarget_runs/logs
 Y consulta el estado del trabajo:
 
 ```bash
-squeue -u $USER
+squeue -u $USER -o "%.18i %.10T %.12P %.70j %.6C %.30R"
 sacct -j JOBID
 ```
