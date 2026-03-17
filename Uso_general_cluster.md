@@ -435,7 +435,32 @@ rm archivo.txt                  # Borrar un archivo
 rm -r carpeta/                  # Borrar una carpeta y su contenido
 ```
 
-⚠️ Usa `rm` con cuidado: en terminal no hay papelera.
+⚠️ **CUIDADO CON `rm` - NO HAY RECUPERACIÓN**
+
+El comando `rm` **borra permanentemente** archivos y carpetas. A diferencia del sistema de archivos gráfico:
+- No hay papelera de reciclaje en terminal
+- No hay deshacer (`Ctrl+Z`) 
+- Los archivos no se pueden recuperar
+
+**Recomendaciones:**
+- Verifica dos veces la ruta antes de ejecutar `rm`
+- Usa `ls` o `ls -R` primero para ver qué vas a borrar
+- Para borrar carpetas grandes, considera primero mover a un directorio temporal
+- Si no estás seguro, haz un backup antes
+
+**Ejemplos seguros:**
+```bash
+ls carpeta/                 # Ver contenido antes de borrar
+rm archivo_viejo.txt        # Borrar un solo archivo después de verificar
+rm -r ./proyecto_viejo/     # Usar ruta explícita (no wildcards globales)
+```
+
+**Evita estos patrones peligrosos:**
+```bash
+rm -r /*                    # Nunca uses wildcards * de forma general
+rm -r ~/                    # Nunca intentes borrar tu home completo
+rm -rf /                    # Comando suicida - nunca lo uses
+```
 
 **Revisar espacio en disco:**
 
