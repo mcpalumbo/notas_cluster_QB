@@ -137,14 +137,53 @@ source ~/miniconda3/etc/profile.d/conda.sh
 conda activate mi_entorno
 ```
 
-Una práctica razonable es organizar tu home así:
+### Variables de entorno, `PATH` y `~/.bashrc`
+
+Si instalas programas manualmente en tu home, muchas veces tendrás que agregar sus binarios al `PATH`.
+
+El `PATH` es la lista de carpetas donde la shell busca comandos ejecutables. Puedes ver su valor actual con:
 
 ```bash
-~/miniconda3
-~/proyectos
-~/software
-~/datos
+echo $PATH
 ```
+
+Para agregar una carpeta temporalmente, solo para la sesión actual:
+
+```bash
+export PATH="$HOME/software/bin:$PATH"
+```
+
+Para que ese cambio quede persistente en tus sesiones futuras, agrégalo a tu archivo `~/.bashrc`:
+
+```bash
+nano ~/.bashrc
+```
+
+Por ejemplo:
+
+```bash
+# Binarios instalados por el usuario
+export PATH="$HOME/software/bin:$PATH"
+
+# Variables útiles para proyectos
+export PROJECTS="$HOME/proyectos"
+export DATASETS="$HOME/datos"
+```
+
+Después de guardar el archivo, recarga la configuración con:
+
+```bash
+source ~/.bashrc
+```
+
+Si necesitas definir librerías o rutas adicionales para un programa compilado manualmente, también puedes exportar variables como:
+
+```bash
+export LD_LIBRARY_PATH="$HOME/software/lib:$LD_LIBRARY_PATH"
+export CPATH="$HOME/software/include:$CPATH"
+```
+
+⚠️ No agregues rutas arbitrarias al `PATH` o `LD_LIBRARY_PATH` sin necesidad. Si quedan mal configuradas, puedes romper comandos o mezclar versiones de librerías.
 
 ## 7. ¿Qué hago si debo descargar un programa o datos?
 
