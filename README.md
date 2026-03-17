@@ -5,6 +5,3 @@ Este repositorio contiene tutoriales y guías prácticas para el uso del **Clust
 ## Documentación Oficial
 
 - [Página principal del Cluster QB](https://docs.cluster.qb.fcen.uba.ar/index.php/P%C3%A1gina_principal)
-
-
-Test pusheo joaquin
