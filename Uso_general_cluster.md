@@ -502,6 +502,38 @@ sacct -j JOBID                  # Ver información histórica de un trabajo
 sinfo --format="%20N %10c %10m %20A"
 ```
 
+**Seleccionar nodos específicos con `--nodelist`:**
+
+Si necesitas ejecutar un trabajo en nodos específicos (por ejemplo, con cierta GPU o procesador), puedes usar `--nodelist`:
+
+```bash
+# Ejecutar en un nodo específico
+sbatch --nodelist=nodo11 mi_trabajo_gpu.sh
+
+# Ejecutar en múltiples nodos específicos
+sbatch --nodelist=nodo1,nodo2,nodo3 mi_trabajo_gpu.sh
+
+# Usar rango de nodos
+sbatch --nodelist=nodo[1-5] mi_trabajo_gpu.sh
+
+# Con srun (sesión interactiva)
+srun --nodelist=nodo11 --nodes=1 --ntasks=1 --cpus-per-task=4 -p gpu --pty bash -i
+
+# Excluir nodos específicos
+sbatch --exclude=nodo1,nodo2 mi_trabajo_gpu.sh
+```
+
+**Validar disponibilidad antes de enviar:**
+
+Usa `sinfo` para verificar que el nodo esté disponible:
+
+```bash
+sinfo -n nodo11              # Ver estado de nodo específico
+sinfo -n nodo[1-5]           # Ver estado de múltiples nodos
+```
+
+Si el nodo muestra estado `down` o `drain`, no podrá ejecutarse el trabajo. Considera usar otro nodo o no especificar `--nodelist` para dejar que SLURM elija automáticamente.
+
 ## 12. Recursos
 
 Resumen de nodos y hardware reportado del cluster:
