@@ -142,6 +142,8 @@ Sugerencias:
 - Este cluster no usa un sistema de `modules`. Si necesitas software adicional, instálalo en tu home.
 - Para software de usuario, instala todo con `conda`/`miniconda` dentro de tu home.
 
+Antes de instalar conda ingrese a un nodo: ver [10. Crear una sesión de `screen` y pedir un nodo](#10-crear-una-sesión-de-screen-y-pedir-un-nodo)
+
 [Guía de instalación de Miniconda/Conda para Linux](https://docs.conda.io/projects/conda/en/latest/user-guide/install/linux.html)
 
 Luego puedes complementar con `pip` para paquetes de Python que no estén en los canales de conda.
