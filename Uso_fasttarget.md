@@ -46,7 +46,7 @@ mkdir -p ~/fasttarget_runs/logs
 
 ## 1. Crear tu ambiente `conda`
 
-Cada usuario debe crear su propio ambiente `conda`. No uses el ambiente de otra persona.
+Cada usuario debe crear su propio ambiente `conda`. No uses el ambiente de otra persona. Recuerda pedir un nodo antes de continuar (no correr en cranex).
 
 Primero activa `conda` en tu shell:
 
