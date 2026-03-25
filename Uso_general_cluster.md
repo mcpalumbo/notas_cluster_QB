@@ -286,18 +286,56 @@ Desglose del comando:
 - `--nodes=1` - Usa 1 nodo
 - `--ntasks-per-node=1` - 1 tarea por nodo
 - `--cpus-per-task=1` - 1 CPU por tarea
-- `-p cpu` - Partición CPU (puedes usar otras como `gpu`, etc.)
-- `--pty bash -i` - Abre una shell interactiva
+- `-p cpu` - Partición CPU
+- `--pty bash -i` - Abre una shell interactiva. Siempre va al final del comando.
+
+Otras opciones:
+- `-p gpu` - Partición GPU
+- `--gres=gpu:1` Solicita 1 GPU 
+- `--nodelist=nodo1` Solicita un nodo en específico 
 
 Una vez ejecutado, tendrás acceso a un nodo de cómputo. Puedes desprenderte de la sesión con `Ctrl+A+D`.
 
-Para verificar que ya no estás en el login node:
+### Simplificar con un alias
 
+Para agilizar, crea un script `pedir_nodo.sh` en tu home:
+
+**1** Crear el script
 ```bash
-hostname
+nano ~/pedir_nodo.sh
 ```
 
-El nombre del host debería ser distinto de `cranex`.
+Pegá dentro exactamente esto:
+```bash
+#!/bin/bash
+srun --nodes=1 --ntasks-per-node=1 --cpus-per-task=1 -p cpu --pty bash -i
+```
+
+Guardá con `Ctrl+O` (Enter) y salí con `Ctrl+X`.
+
+**2** Hacerlo ejecutable
+```bash
+chmod +x ~/pedir_nodo.sh
+```
+
+**3** Agregá un alias a `~/.bashrc`
+```bash
+nano ~/.bashrc
+```
+
+Ve al final del archivo y agregá:
+```bash
+alias nodo="~/pedir_nodo.sh"
+```
+
+Guardá con `Ctrl+O` (Enter) y salí con `Ctrl+X`.
+
+**4** Recargá la configuración
+```bash
+source ~/.bashrc
+```
+
+Ahora, cada vez que ingreses al cluster, pedís un nodo solo con: `nodo`
 
 ## 11. Envío de Trabajos y Comandos Útiles
 
