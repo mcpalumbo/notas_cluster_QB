@@ -231,10 +231,11 @@ wget --mirror --continue --no-parent URL_BASE     # Mirroring limitado
 Sincronizar carpetas entre tu PC y el cluster con `rsync`:
 
 ```bash
-# De tu PC al cluster
+# Observación: correr los siguientes comandos en tu PC
+# Pasar archivos de tu PC al cluster
 rsync -avhP ./proyecto/ usuario@cluster.qb.fcen.uba.ar:~/proyecto/
 
-# Del cluster a tu PC
+# Pasar archivos del cluster a tu PC
 rsync -avhP usuario@cluster.qb.fcen.uba.ar:~/resultados/ ./resultados_local/
 ```
 
