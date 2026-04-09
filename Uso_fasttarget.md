@@ -404,3 +404,13 @@ Y consulta el estado del trabajo:
 squeue -u $USER -o "%.18i %.10T %.12P %.70j %.6C %.30R"
 sacct -j JOBID
 ```
+
+## 9. Manejo de archivos
+
+*IMPORTANTE*
+Si necesitas dejar archivos en subdirectorios de `/grupos/Dario/fasttarget` revisa los permisos. Evitemos llenarla de archivos innecesarios, siempre que se pueda guarda lo generado en tu home. En el caso de que desees compartirlo asegurate de que todos en el grupo podemos utilizarlos:
+
+```bash
+chown -R :dario mi_carpeta/
+chmod -R g+ws mi_carpeta/
+```
