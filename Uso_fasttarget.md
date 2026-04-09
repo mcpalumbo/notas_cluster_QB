@@ -414,3 +414,7 @@ Si necesitas dejar archivos en subdirectorios de `/grupos/Dario/fasttarget` revi
 chown -R :dario mi_carpeta/
 chmod -R g+ws mi_carpeta/
 ```
+
+## 10. Ejemplos
+
+En `/grupos/Dario/fasttarget/organism/Klebsiella` encontraras ejemplos de los archivos config.yml y script para slurm para Klebsiella. 
