@@ -415,6 +415,155 @@ chown -R :dario mi_carpeta/
 chmod -R g+ws mi_carpeta/
 ```
 
-## 10. Ejemplos
+## Ejemplos
 
 En `/grupos/Dario/fasttarget/organism/Klebsiella` encontraras ejemplos de los archivos config.yml y script para slurm para Klebsiella. 
+
+
+
+# EN IMPLEMENTACION
+
+# 10. Standalone Boltz Workflow
+
+This workflow runs Boltz outside the normal FastTarget pipeline. Use it only for organisms that already have FastTarget structure results.
+
+## 10.1. Generate Boltz Annotations
+
+Run from the FastTarget repository root using the FastTarget environment:
+
+```bash
+cd /path/to/fasttarget
+conda activate fasttarget
+
+python -m ftscripts.boltz \
+  --output-path /path/to/results_parent \
+  --organism-name PaPA14 \
+  --stage annotations \
+  --refresh-uniprot \
+  --overwrite-curation
+```
+
+This creates:
+
+```text
+/path/to/results_parent/PaPA14/structures/boltz/boltz_annotations.json
+/path/to/results_parent/PaPA14/structures/boltz/boltz_curation.tsv
+```
+
+Edit `boltz_curation.tsv`. Check at least:
+
+```text
+run_boltz
+copies
+selected_ligand_names
+selected_ligand_smiles
+ligand_needs_review
+```
+
+## 10.2. Create Boltz YAML Files
+
+Use the FastTarget environment:
+
+```bash
+conda activate fasttarget
+
+python -m ftscripts.boltz \
+  --output-path /path/to/results_parent \
+  --organism-name PaPA14 \
+  --stage yaml
+```
+
+YAML files are written to:
+
+```text
+/path/to/results_parent/PaPA14/structures/boltz/inputs/
+```
+
+## 10.3. Run Boltz on Brainy
+
+Use the Boltz environment:
+
+```bash
+ssh brainy
+cd /path/to/fasttarget
+
+source /grupos/Marce/estructural/boltz/.boltz/bin/activate
+source /grupos/Marce/estructural/boltz/export_credentials.sh
+
+python -m ftscripts.boltz \
+  --output-path /path/to/results_parent \
+  --organism-name PaPA14 \
+  --stage predict \
+  --cache /grupos/Marce/estructural/boltz/boltz_cache
+```
+
+Do not run `--stage all` inside the Boltz environment, because pocket prediction needs FastTarget dependencies.
+
+## 10.4. Normalize Boltz Models
+
+Return to the FastTarget environment:
+
+```bash
+conda activate fasttarget
+
+python -m ftscripts.boltz \
+  --output-path /path/to/results_parent \
+  --organism-name PaPA14 \
+  --stage models
+```
+
+Normalized models are written as:
+
+```text
+/path/to/results_parent/PaPA14/structures/boltz/models/BZ_<locus_tag>.pdb
+```
+
+## 10.5. Run Pocket Prediction
+
+Use the FastTarget environment:
+
+```bash
+conda activate fasttarget
+
+python -m ftscripts.boltz \
+  --output-path /path/to/results_parent \
+  --organism-name PaPA14 \
+  --stage pockets \
+  --container-engine singularity \
+  --cpus 4
+```
+
+Use `apptainer` or `docker` instead of `singularity` if that is how your FastTarget installation runs containers.
+
+## 10.6. Create the Boltz Summary Table
+
+Use the FastTarget environment:
+
+```bash
+conda activate fasttarget
+
+python -m ftscripts.boltz \
+  --output-path /path/to/results_parent \
+  --organism-name PaPA14 \
+  --stage summary
+```
+
+Final output:
+
+```text
+/path/to/results_parent/PaPA14/structures/boltz/PaPA14_boltz_summary.tsv
+```
+
+## 10.Direct Structures Path Alternative
+
+If the organism results are not under an output parent folder, point directly to the structures directory:
+
+```bash
+python -m ftscripts.boltz \
+  --structures-dir /path/to/PaPA14/structures \
+  --gbk-file /path/to/PaPA14/genome/PaPA14.gbk \
+  --stage annotations
+```
+
+
+
